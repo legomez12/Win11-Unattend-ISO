@@ -1,0 +1,34 @@
+{
+  "terminal.integrated.defaultProfile.linux": "WSL Bash",
+  "terminal.integrated.profiles.linux": {
+    "Host Windows PowerShell 5.1": {
+      "path": "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "args": [
+        "-NoLogo"
+      ]
+    },
+    "Host Windows PowerShell 7": {
+      "path": "/mnt/c/Program Files/PowerShell/7/pwsh.exe",
+      "args": [
+        "-NoLogo"
+      ]
+    },
+    "WSL PowerShell 7 (native)": {
+      "path": "pwsh",
+      "args": [
+        "-NoLogo"
+      ]
+    },
+    "WSL Bash": {
+      "path": "bash",
+      "args": [
+        "-l"
+      ]
+    }
+  },
+  "powershell.powerShellAdditionalExePaths": {
+    "Host Windows PowerShell 5.1": "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "Host Windows PowerShell 7": "/mnt/c/Program Files/PowerShell/7/pwsh.exe",
+    "WSL PowerShell 7 (native)": "pwsh"
+  }
+}

@@ -1,0 +1,17 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    p7zip-full \
+    coreutils \
+    findutils \
+    gawk \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+
+COPY compare-isos.sh /usr/local/bin/compare-isos.sh
+RUN chmod +x /usr/local/bin/compare-isos.sh
+
+ENTRYPOINT ["/usr/local/bin/compare-isos.sh"]

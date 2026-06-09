@@ -1,0 +1,32 @@
+{
+  "browsers": [
+    {
+      "name": "chrome",
+      "displayName": "Chrome",
+      "url": "https://dl.google.com/chrome/install/latest/chrome_installer.exe",
+      "installerFile": "chrome-latest.exe",
+      "silentArgs": "/silent /install"
+    },
+    {
+      "name": "opera",
+      "displayName": "Opera",
+      "url": "https://net.geo.opera.com/opera/stable/windows",
+      "installerFile": "opera-latest.exe",
+      "silentArgs": "/silent /allusers=1 /launchbrowser=0"
+    },
+    {
+      "name": "firefox",
+      "displayName": "Firefox",
+      "url": "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US",
+      "installerFile": "firefox-latest.exe",
+      "silentArgs": "/S"
+    },
+    {
+      "name": "brave",
+      "displayName": "Brave",
+      "url": "https://laptop-updates.brave.com/latest/winx64",
+      "installerFile": "brave-latest.exe",
+      "silentArgs": "/install"
+    }
+  ]
+}

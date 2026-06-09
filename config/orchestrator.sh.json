@@ -1,0 +1,15 @@
+{
+  "componentName": "build-winiso",
+  "browserConfigPath": "config/browsers.json",
+  "unattendUri": "https://raw.githubusercontent.com/memstechtips/UnattendedWinstall/main/autounattend.xml",
+  "downloadedUnattendFileName": "autounattend.xml",
+  "workingRootName": "winiso_orchestrator",
+  "stageRootName": "oem-stage",
+  "defaultAppsFolder": "apps",
+  "scripts": {
+    "installBrowsers": "scripts/InstallBrowsers.sh",
+    "addRunOnceApps": "scripts/AddRunOnceApps.sh",
+    "runOnceManager": "scripts/RunOnceManager.sh",
+    "applyUnattend": "scripts/ApplyUnattend.sh"
+  }
+}

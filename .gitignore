@@ -1,0 +1,3 @@
+# Ignore local installer payloads
+/apps/**
+*iso-compare-report.txt

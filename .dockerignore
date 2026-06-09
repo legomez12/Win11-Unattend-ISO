@@ -1,0 +1,10 @@
+.git
+.vscode
+*.iso
+*.wim
+*.esd
+*.img
+*.tmp
+*.log
+autounattend.xml
+BrowserInstallers/

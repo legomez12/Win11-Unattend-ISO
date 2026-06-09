@@ -1,0 +1,43 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+SHELL ["C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe", "-NoLogo", "-NoProfile", "-Command"]
+
+# Install Chocolatey and 7-Zip for ISO extraction support
+RUN Set-ExecutionPolicy Bypass -Scope Process -Force; \
+    [System.Net.ServicePointManager]::SecurityProtocol = \
+      [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); \
+    choco install 7zip -y --no-progress --ignore-package-exit-codes; \
+    $chocoExit = $LASTEXITCODE; \
+    if ($chocoExit -in @(0, 1641, 3010)) { \
+      Write-Host "choco install exit code $chocoExit treated as success"; \
+      $global:LASTEXITCODE = 0 \
+    } else { \
+      throw "choco install failed with exit code $chocoExit" \
+    }; \
+    Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue; \
+    exit 0
+
+# Install Windows ADK Deployment Tools (provides oscdimg)
+RUN Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/?linkid=2243390' \
+      -OutFile 'C:\adksetup.exe'; \
+    Start-Process -FilePath 'C:\adksetup.exe' \
+      -ArgumentList '/quiet', '/features', 'OptionId.DeploymentTools' \
+      -Wait -NoNewWindow; \
+    Remove-Item 'C:\adksetup.exe' -Force
+
+ENV PATH="C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\7-Zip;C:\\Program Files (x86)\\Windows Kits\\10\\Assessment and Deployment Kit\\Deployment Tools\\amd64\\Oscdimg;%PATH%"
+
+WORKDIR C:\\work
+
+COPY . C:/work
+
+# Fail fast if required modular build scripts/config are not present in the image
+RUN $requiredPaths = @('C:\work\build-winiso.ps1', 'C:\work\scripts\Common.ps1', 'C:\work\scripts\ApplyUnattend.ps1', 'C:\work\scripts\InstallBrowsers.ps1', 'C:\work\scripts\AddRunOnceApps.ps1', 'C:\work\scripts\RunOnceManager.ps1', 'C:\work\config\browsers.json', 'C:\work\config\orchestrator.json'); \
+    foreach ($path in $requiredPaths) { \
+      if (-not (Test-Path -LiteralPath $path)) { \
+        throw "Required file missing from container image: $path" \
+      } \
+    }
+
+ENTRYPOINT ["C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:\\work\\build-winiso.ps1"]
