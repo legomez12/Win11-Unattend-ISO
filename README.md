@@ -15,7 +15,7 @@ It can also inject browser installers (`-Browsers`) and local app installers fro
 
 ## Documentation
 
-- Detailed script reference: [scripts-reference.md](scripts-reference.md)
+- Detailed script reference: [scripts-reference.md](docs/scripts-reference.md)
 
 ## Prerequisites
 
@@ -107,4 +107,4 @@ Required only for native `build-winiso.ps1` usage (not required for Docker Windo
    oscdimg /?
    ```
 
-For older troubleshooting notes and archived details, see [history.md](history.md).
+For older troubleshooting notes and archived details, see [history.md](docs/history.md).
