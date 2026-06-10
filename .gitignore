@@ -1,3 +1,4 @@
 # Ignore local installer payloads
 /apps/**
 *iso-compare-report.txt
+github-release-workflow.md
