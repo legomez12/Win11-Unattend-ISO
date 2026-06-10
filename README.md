@@ -11,7 +11,7 @@ It can also inject browser installers (`-Browsers`) and local app installers fro
 - Native Linux/WSL: `build-winiso.sh`
 - Native Windows PowerShell: `build-winiso.ps1`
 - Docker Linux: `Dockerfile`
-- Docker Windows containers: `Dockerfile.pwsh`
+- Docker Windows containers: `Dockerfile.pwsh` **Recommended for Windows users** for better native tooling support and performance.
 
 ## Documentation
 

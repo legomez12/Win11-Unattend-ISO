@@ -31,7 +31,7 @@ Sample command:
 pwsh ./build-winiso.ps1 C:\MV-ISO\win11.iso C:\MV-ISO\win11-min.iso -Browsers brave,firefox -AppFolders "C:\MV-ISO\apps"
 ```
 
-### scripts/ApplyUnattend.ps1
+#### scripts/ApplyUnattend.ps1
 
 Synopsis:
 
@@ -55,7 +55,7 @@ Sample command:
 pwsh ./scripts/ApplyUnattend.ps1 -InputIso C:\MV-ISO\win11.iso -OutputIso C:\MV-ISO\win11-min.iso -UnattendXmlPath C:\MV-ISO\autounattend.xml -WorkingDirectory C:\Temp\winiso_orchestrator -OemStageRoot C:\Temp\winiso_orchestrator\oem-stage
 ```
 
-### scripts/InstallBrowsers.ps1
+#### scripts/InstallBrowsers.ps1
 
 Synopsis:
 
@@ -77,7 +77,7 @@ Sample command:
 pwsh ./scripts/InstallBrowsers.ps1 -BrowserConfigPath ./config/browsers.json -StageRoot C:\Temp\winiso_orchestrator\oem-stage -Browsers brave,chrome
 ```
 
-### scripts/AddRunOnceApps.ps1
+#### scripts/AddRunOnceApps.ps1
 
 Synopsis:
 
@@ -99,7 +99,7 @@ Sample command:
 pwsh ./scripts/AddRunOnceApps.ps1 -StageRoot C:\Temp\winiso_orchestrator\oem-stage -AppFolders "C:\MV-ISO\apps" -DefaultAppsFolder C:\MV-ISO\apps
 ```
 
-### scripts/RunOnceManager.ps1
+#### scripts/RunOnceManager.ps1
 
 Synopsis:
 
@@ -153,7 +153,7 @@ Sample command:
 bash build-winiso.sh /mnt/c/MV-ISO/win11.iso /mnt/c/MV-ISO/win11-min.iso -Browsers brave,firefox -AppFolders /mnt/c/MV-ISO/apps
 ```
 
-### scripts/ApplyUnattend.sh
+#### scripts/ApplyUnattend.sh
 
 Synopsis:
 
@@ -165,7 +165,7 @@ Sample command:
 bash scripts/ApplyUnattend.sh --input-iso /mnt/c/MV-ISO/win11.iso --output-iso /mnt/c/MV-ISO/win11-min.iso --unattend-xml-path /mnt/c/MV-ISO/autounattend.xml --working-directory /tmp/winiso_orchestrator --oem-stage-root /tmp/winiso_orchestrator/oem-stage
 ```
 
-### scripts/InstallBrowsers.sh
+#### scripts/InstallBrowsers.sh
 
 Synopsis:
 
@@ -177,7 +177,7 @@ Sample command:
 bash scripts/InstallBrowsers.sh --browser-config-path ./config/browsers.json --stage-root /tmp/winiso_orchestrator/oem-stage --browsers brave,chrome --entries-file /tmp/winiso_orchestrator/browser-entries.tsv
 ```
 
-### scripts/AddRunOnceApps.sh
+#### scripts/AddRunOnceApps.sh
 
 Synopsis:
 
@@ -189,7 +189,7 @@ Sample command:
 bash scripts/AddRunOnceApps.sh --stage-root /tmp/winiso_orchestrator/oem-stage --app-folders /mnt/c/MV-ISO/apps --default-apps-folder ./apps --entries-file /tmp/winiso_orchestrator/app-entries.tsv
 ```
 
-### scripts/RunOnceManager.sh
+#### scripts/RunOnceManager.sh
 
 Synopsis:
 
@@ -200,3 +200,19 @@ Sample command:
 ```bash
 bash scripts/RunOnceManager.sh --stage-root /tmp/winiso_orchestrator/oem-stage --browser-entries-file /tmp/winiso_orchestrator/browser-entries.tsv --application-entries-file /tmp/winiso_orchestrator/app-entries.tsv
 ```
+
+### compare-isos.sh
+
+Synopsis:
+- Compares two ISOs for file-level content differences, ignoring metadata/timestamps.
+Sample command:
+
+```bash
+bash compare-isos.sh /mnt/c/MV-ISO/win11.iso /mnt/c/MV-ISO/win11-min.iso
+```
+
+There is also a dockerized version of this script for Linux containers:
+
+```bash
+docker run --rm -v /mnt/c/MV-ISO:/mnt/c/MV-ISO win11-unattend-iso compare-isos.sh /mnt/c/MV-ISO/win11.iso /mnt/c/MV-ISO/win11-min.iso
+``` 
