@@ -1,6 +1,6 @@
 # Win11-Unattend-ISO
 
-Builds a custom Windows 11 ISO by downloading and injecting `autounattend.xml` from [UnattendedWinstall](https://github.com/memstechtips/UnattendedWinstall).
+Builds a custom Windows 11 ISO by downloading and injecting `autounattend.xml` from [UnattendedWinstall](https://github.com/memstechtips/UnattendedWinstall), enabling a clean, debloated, pre-configured Windows 11 installation directly from an official Microsoft ISO—with no manual tweaking required.
 
 It can also inject browser installers (`-Browsers`) and local app installers from `./apps` (`.exe`/`.msi`) for first-logon installation.
 
